@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agenda | Compromissos</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="hero">
+      <div><span class="eyebrow">AGENDA DIGITAL</span><h1>Seus compromissos,<br><em>em um só lugar.</em></h1><p>Organize reuniões, tarefas e pessoas com facilidade.</p></div>
+      <div class="hero-icon" aria-hidden="true">▦</div>
+    </header>
+    <main>
+      <section class="toolbar" aria-label="Ferramentas">
+        <div><h2>Compromissos</h2><p id="total">Carregando compromissos...</p></div>
+        <button id="novo" class="button primary">＋ Novo compromisso</button>
+      </section>
+      <div class="filters"><label class="search-label" for="busca">⌕</label><input id="busca" placeholder="Buscar por título, descrição ou pessoa..." aria-label="Buscar compromissos"/><select id="filtro" aria-label="Filtrar compromissos"><option value="todos">Todos</option><option value="futuros">Futuros</option><option value="passados">Passados</option></select></div>
+      <div id="mensagem" role="status" aria-live="polite"></div>
+      <div id="lista" class="events"></div>
+    </main>
+    <footer>Agenda MongoDB · Node.js + Express · Projeto acadêmico</footer>
+  </div>
+  <dialog id="editor" aria-labelledby="dialog-title">
+    <form id="form-compromisso" novalidate>
+      <div class="dialog-head"><div><span class="eyebrow">COMPROMISSO</span><h2 id="dialog-title">Novo compromisso</h2></div><button type="button" id="fechar" class="close" aria-label="Fechar">×</button></div>
+      <div class="form-body">
+        <label for="dataHorario">Data e horário *</label><input type="datetime-local" id="dataHorario" required />
+        <label for="titulo">Título *</label><input id="titulo" maxlength="150" placeholder="Ex.: Reunião de equipe" required />
+        <label for="descricao">Descrição</label><textarea id="descricao" rows="4" maxlength="2000" placeholder="Detalhes do compromisso..."></textarea>
+        <div class="people-head"><label>Pessoas envolvidas</label><span>Até 50 pessoas</span></div>
+        <div id="pessoas" class="people-list"></div>
+        <div class="add-person"><input id="nome-pessoa" maxlength="120" placeholder="Nome da pessoa" aria-label="Nome da pessoa"/><button id="adicionar-pessoa" type="button" class="button secondary">＋ Adicionar</button></div>
+        <p class="hint">Cada pessoa é armazenada individualmente dentro do documento MongoDB.</p>
+      </div>
+      <div class="actions"><button id="cancelar" type="button" class="button ghost">Cancelar</button><button id="salvar" type="submit" class="button primary">Salvar compromisso</button></div>
+    </form>
+  </dialog>
+</body>
+</html>
